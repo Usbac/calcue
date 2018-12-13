@@ -1,0 +1,163 @@
+.root { 
+    -fx-focus-color: transparent;
+}
+
+.main {
+    -fx-background-color: -main-dark;
+}
+
+
+/* ---> TEXT <--- */
+
+
+.textfield {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-input;
+}
+
+.text-area .content {
+    -fx-background-color: -second-dark;
+    -fx-background-radius: 0;
+}
+
+.text-area {
+    -fx-text-fill: -text-input;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
+
+
+/* ---> BUTTONS <--- */
+
+
+.minimizeButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-input;
+}
+.minimizeButton:hover {
+    -fx-text-fill: -text-buttons;
+}
+
+.closeButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-input;
+}
+.closeButton:hover {
+    -fx-background-radius: 0;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+.buttonNumber {
+    -fx-background-color: -second-dark;
+    -fx-font-size: 20px;
+    -fx-text-fill: -numbers;
+    -fx-border-width: 1px;
+    -fx-border-color: -main-dark;
+    -fx-border-style: solid inside;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0,0,0,0,0;
+}
+.buttonNumber:hover {
+    -fx-background-color: -main-dark;
+}
+
+.buttonCancel {
+    -fx-background-color: -second-dark;
+    -fx-font-size: 17px;
+    -fx-text-fill: #ff3333;
+    -fx-border-width: 1px;
+    -fx-border-color: -main-dark;
+    -fx-border-style: solid inside;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0,0,0,0,0;
+}
+.buttonCancel:hover {
+    -fx-background-color: -main-dark;
+}
+
+.buttonOperator {
+    -fx-background-color: -main-yellow;
+    -fx-text-fill: -operator;
+    -fx-border-width: 1px;
+    -fx-border-color: -second-yellow;
+    -fx-border-style: solid inside;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0,0,0,0,0;
+}
+.buttonOperator:hover {
+    -fx-background-color: -third-yellow;
+}
+
+.OptionalButton {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.7;
+    -fx-text-fill: -text-buttons;
+}
+.OptionalButton:hover {
+    -fx-cursor: hand;
+    -fx-opacity: 0.4;
+}
+
+/* ---> MENU BAR <--- */
+
+
+.menu-bar {
+    -fx-background-color: transparent;
+}
+
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: -text-buttons;
+}
+.menu-bar > .container > .menu-button > .label:hover {
+    -fx-text-fill: -text-input;
+}
+
+.menu-item:hover, .menu:hover {
+    -fx-background-color: #e6bb00;
+    -fx-text-fill: white;
+}
+.menu-item:focused, .menu:focused {
+    -fx-background-color: #e6bb00;
+    -fx-text-fill: white;
+}
+
+
+/* ---> SCROLL BARS <--- */
+
+
+.scroll-bar:horizontal .increment-arrow,
+.scroll-bar:horizontal .decrement-arrow,
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-opacity: 0;
+}
+
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding:0.0 0.0 10.0 0.0;
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 10.0 0.0 0.0;
+}
+
+.scroll-pane, .scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, 
+.scroll-bar:vertical {
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: -third-dark;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+}

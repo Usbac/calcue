@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="434.0" prefWidth="459.0" styleClass="main" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.usbac.calcue.View">
+    <children>
+      <TextArea fx:id="variables" layoutX="4.0" layoutY="75.0" prefHeight="270.0" prefWidth="204.0" styleClass="text-area" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="242.0" />
+      <TextField fx:id="function" alignment="CENTER_RIGHT" layoutX="6.0" layoutY="23.0" prefHeight="32.0" prefWidth="449.0" styleClass="textfield" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
+      <AnchorPane layoutX="208.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="+" textAlignment="CENTER" textOverrun="CLIP" userData="+" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="–" textAlignment="CENTER" textOverrun="CLIP" userData="-" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="×" userData="*" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="÷" userData="/" AnchorPane.bottomAnchor="177.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="√" userData="sqrt" AnchorPane.bottomAnchor="236.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="^" userData="^" AnchorPane.bottomAnchor="236.0" AnchorPane.rightAnchor="59.0">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonOperator" text="\%" userData="\%" AnchorPane.bottomAnchor="236.0" AnchorPane.rightAnchor="118.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#clearFunction" prefHeight="60.0" prefWidth="60.0" styleClass="buttonCancel" text="C" AnchorPane.bottomAnchor="236.0" AnchorPane.rightAnchor="177.0">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="237.0" prefWidth="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="59.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="0" userData="0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="118.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="1" userData="1" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="118.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="2" userData="2" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="59.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="3" userData="3" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="4" userData="4" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="118.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="5" userData="5" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="59.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="6" userData="6" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="7" userData="7" AnchorPane.bottomAnchor="177.0" AnchorPane.rightAnchor="118.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="8" userData="8" AnchorPane.bottomAnchor="177.0" AnchorPane.rightAnchor="59.0" />
+                  <Button mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="60.0" styleClass="buttonNumber" text="9" userData="9" AnchorPane.bottomAnchor="177.0" AnchorPane.rightAnchor="0.0" />
+                  <Button layoutX="84.0" layoutY="187.0" mnemonicParsing="false" onAction="#onClickEquals" prefHeight="60.0" prefWidth="119.0" styleClass="buttonNumber" text="=" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <MenuBar layoutX="-16.0" layoutY="1.0" prefHeight="25.0" prefWidth="160.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" styleClass="menuBar" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onClickOpen" text="Open (Ctrl+O)" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickSave" text="Save (Ctrl+S)" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickSaveAs" text="Save as" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem fx:id="optionTheme" mnemonicParsing="false" onAction="#onClickTheme" text="Theme" />
+                  <MenuItem fx:id="optionSide" mnemonicParsing="false" onAction="#ToggleSide" text="Compact" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickShowInfo" text="Show Info" />
+               </items></Menu>
+        </menus>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </MenuBar>
+      <Text fx:id="previousFunction" fill="WHITE" fontSmoothingType="LCD" layoutX="188.0" layoutY="6.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="previous" textAlignment="RIGHT" wrappingWidth="213.00000440329313" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="428.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickUp" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↑" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="438.0" layoutY="17.0" mnemonicParsing="false" onAction="#onClickDown" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↓" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="35.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="variablesButton" layoutX="156.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearVariables" prefHeight="20.0" prefWidth="52.0" styleClass="OptionalButton" text="CLEAR" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="240.0" />
+      <Button fx:id="toggleHistory" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="4.0" layoutY="379.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onClickHistory" prefHeight="25.0" prefWidth="119.0" styleClass="OptionalButton" text="SHOW HISTORY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" />
+      <Button alignment="CENTER" layoutX="414.0" layoutY="-1.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="35.0" styleClass="closeButton" text="×" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="-5.0" top="-5.0" />
+         </padding>
+      </Button>
+      <Button layoutX="436.0" layoutY="5.0" mnemonicParsing="false" onAction="#minimize" prefHeight="26.0" prefWidth="35.0" styleClass="minimizeButton" text="_" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets top="-5.0" />
+         </padding>
+      </Button>
+    </children>
+</AnchorPane>

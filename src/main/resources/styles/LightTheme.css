@@ -1,0 +1,29 @@
+.root {
+    -main-dark: #ffffff;
+    -second-dark: #dddddd;
+    -third-dark: #aaaaaa;
+    -operator: #ffffff;
+    
+    -main-yellow: #fdec00;
+    -second-yellow: #cca700;
+    -third-yellow: #ffda33;
+    
+    -text-buttons: #000000;
+    -text-input: #000000;
+    -numbers: #888888;
+}
+
+.buttonOperator {
+    -fx-border-color: white;
+}
+
+.previous {
+    -fx-background-color: transparent;
+    -fx-fill: #000000;
+    -fx-opacity: 0.6;
+}
+
+.movementButtons {
+    -fx-background-color: transparent;
+    -fx-text-fill: -numbers;
+}
