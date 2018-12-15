@@ -21,9 +21,11 @@ public final class FileManager {
     static String filePath = "";
     static View view = Controller.view;
 
+    
     public static void setFilterFile() {
         FILE_CHOOSER.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(" + FILE_FORMAT + ")", FILE_FORMAT));
     }
+    
     
     public static void openFile() throws FileNotFoundException {
         setFilterFile();

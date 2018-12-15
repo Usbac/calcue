@@ -201,6 +201,16 @@ public class View implements Initializable {
     
     
     public void initializeInput() {
+        function.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.UP) {
+                Controller.goPreviousOperation();
+            }
+            
+            if (event.getCode() == KeyCode.DOWN) {
+                Controller.goNextOperation();
+            }
+        });
+        
         ap.setOnKeyPressed((KeyEvent event) -> {
             //Save
             if (CTRL_S.match(event)) {

@@ -24,7 +24,6 @@ public class Calcue extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(MAIN_STYLE);
         scene.getStylesheets().add(DARK_THEME);
-        
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle(TITLE);
@@ -35,7 +34,7 @@ public class Calcue extends Application {
         initializeMouseMovement(root, stage);
     }
     
-    
+
     public void initializeMouseMovement(Parent root, Stage stage) {
         //Grab
         root.setOnMousePressed((MouseEvent event) -> {
