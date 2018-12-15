@@ -30,7 +30,6 @@ public class Calcue extends Application {
         stage.setScene(scene);
         stage.setWidth(WIDTH);
         stage.show();
-        initializeKeys(scene);
         initializeMouseMovement(root, stage);
     }
     
@@ -46,13 +45,6 @@ public class Calcue extends Application {
         root.setOnMouseDragged((MouseEvent event) -> {
             stage.setX(event.getScreenX() - x);
             stage.setY(event.getScreenY() - y);
-        });
-    }
-    
-    
-    public void initializeKeys(Scene scene) {
-        scene.setOnKeyPressed(e -> {
-            Controller.ProcessKeys(e.getCode());
         });
     }
 

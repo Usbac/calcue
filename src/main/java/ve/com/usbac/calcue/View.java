@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class View implements Initializable {
-
+    
     final KeyCombination CTRL_O = new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN);
     final KeyCombination CTRL_S = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN);
     final int FULLSIZE_WIDTH = 450;
@@ -31,7 +31,9 @@ public class View implements Initializable {
     final String LINK = "https://github.com/Usbac/Calcue";
     final String ABOUT_TITLE = "Calcue Information";
     final String ABOUT_HEADER = "Calcue v0.9";
-    final String ABOUT_TEXT = "Created by USBAC \nClick the Calcue logo for more information \nabout the reserved functions and how to use.";
+    final String ABOUT_TEXT = "Created by USBAC \n"
+                            + "Click the Calcue logo for more information \n"
+                            + "about the reserved functions and how to use.";
     final String STYLES_FOLDER = "/styles/";
     final String STYLE_FILE_SUFFIX = "Theme.css";
     final String SHOW_VARIABLES = "SHOW VARIABLES";
@@ -62,19 +64,19 @@ public class View implements Initializable {
         
     @FXML
     private void onClickOpen(ActionEvent event) throws FileNotFoundException {
-        FileManager.openFile();
+        controller.file.openFile();
     }
         
     
     @FXML
     private void onClickSave(ActionEvent event) throws IOException {
-        FileManager.saveFile();
+        controller.file.saveFile();
     }
     
     
     @FXML
     private void onClickSaveAs(ActionEvent event) throws IOException {
-        FileManager.saveFileAs();
+        controller.file.saveFileAs();
     }
     
     
@@ -113,19 +115,19 @@ public class View implements Initializable {
     
     @FXML
     public void onClickDown(ActionEvent event) {
-        Controller.goNextOperation();
+        controller.goNextOperation();
     }
     
     
     @FXML
     public void onClickUp(ActionEvent event) {
-        Controller.goPreviousOperation();
+        controller.goPreviousOperation();
     }
     
     
     @FXML
     private void onClickEquals(ActionEvent event) {
-        Controller.solveFunction();
+        controller.solveFunction();
     }
     
     
@@ -166,11 +168,11 @@ public class View implements Initializable {
     private void onClickHistory(ActionEvent event) {
         showingVariables = !showingVariables;
         if (showingVariables) {
-            variables.setText(Controller.variablesBackup);
+            variables.setText(controller.variablesBackup);
             toggleHistory.setText(SHOW_HISTORY);
         } else {
-            Controller.variablesBackup = variables.getText();
-            variables.setText(Controller.getOperationList());
+            controller.variablesBackup = variables.getText();
+            variables.setText(controller.getOperationList());
             toggleHistory.setText(SHOW_VARIABLES);
         }
     }
@@ -202,20 +204,23 @@ public class View implements Initializable {
     
     public void initializeInput() {
         function.setOnKeyPressed((KeyEvent event) -> {
-            if (event.getCode() == KeyCode.UP) {
-                Controller.goPreviousOperation();
-            }
-            
-            if (event.getCode() == KeyCode.DOWN) {
-                Controller.goNextOperation();
-            }
+            if (event.getCode() == KeyCode.UP)
+                onClickUp(null);
+            if (event.getCode() == KeyCode.DOWN)
+                onClickDown(null);
         });
         
         ap.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ENTER)
+                onClickEquals(null);
+            if (event.getCode() == KeyCode.UP)
+                onClickUp(null);
+            if (event.getCode() == KeyCode.DOWN)
+                onClickDown(null);
             //Save
             if (CTRL_S.match(event)) {
                 try {
-                    FileManager.saveFile();
+                    controller.file.saveFile();
                 } catch (IOException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -223,7 +228,7 @@ public class View implements Initializable {
             //Open
             if (CTRL_O.match(event)) {
                 try {
-                    FileManager.openFile();
+                    controller.file.openFile();
                 } catch (IOException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }                

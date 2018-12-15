@@ -1,46 +1,48 @@
 package ve.com.usbac.calcue;
 
 import java.util.ArrayList;
-import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
+import javafx.scene.input.*;
 
 public final class Controller {
+
+    private final String NEW_LINE = System.getProperty("line.separator");
+    private final String ERROR_MSG = "ERROR";
+    private final String EMPTY = "";
+    private final View view;
+    private final Prefix prefix;
     
-    private final static String NEW_LINE = System.getProperty("line.separator");
-    private final static String ERROR_MSG = "ERROR";
-    
-    static View view;
-    static Prefix prefix;
-    static ArrayList<String> operationList;
-    static String variablesBackup;
-    static int operationIndex;
+    public FileManager file;
+    private final ArrayList<String> operationList;
+    String variablesBackup;
+    int operationIndex;
     
     
     public Controller(View v) {
         view = v;
         prefix = new Prefix();
+        file = new FileManager(view, this);
         operationList = new ArrayList<>();
         operationIndex = 0;
     }
     
     
-    public static void setLastOperations() {
+    public void setLastOperations() {
         operationIndex = operationList.size() - 1;
         view.previousFunction.setText(operationList.get(operationIndex - 1));
         view.function.setText(operationList.get(operationIndex));
     }
     
     
-    public static void goPreviousOperation() {
+    public void goPreviousOperation() {
         if (operationIndex <= 0)
             return;
         operationIndex--;
-        view.previousFunction.setText(operationIndex != 0? operationList.get(operationIndex - 1): "");
+        view.previousFunction.setText(operationIndex != 0? operationList.get(operationIndex - 1): EMPTY);
         view.function.setText(operationList.get(operationIndex));
     }
     
 
-    public static void goNextOperation() {
+    public void goNextOperation() {
         if (operationIndex >= operationList.size() - 1)
             return;
         operationIndex++;
@@ -49,44 +51,40 @@ public final class Controller {
     }
     
     
-    public static void solveFunction() {
+    public void solveFunction() {
         operationList.add(view.function.getText());
         view.previousFunction.setText(view.function.getText());
+        operationIndex = operationList.size() - 1;
         String result;
+        
         try {
-            result = Prefix.convertToAndSolvePrefix(view.function.getText(), view.variables.getText());
-            operationList.add(result);
+            result = prefix.convertToAndSolvePrefix(view.function.getText(), view.variables.getText());
         } catch (Exception e) {
-            operationList.add(ERROR_MSG);
+            view.function.setText(ERROR_MSG);
+            return;
         }
         
-        operationIndex = operationList.size() - 1;
-        view.function.setText(operationList.get(operationIndex));
-    }
-    
-        
-    public static void minimize() {
-        View.stage = (Stage) view.ap.getScene().getWindow();
-        View.stage.setIconified(true);
+        if (!operationList.get(operationIndex).matches(result)) {
+            addToOperations(result);
+            view.function.setText(result);
+        }
     }
     
     
-    public static String getOperationList() {
-        String finalList = "";
+    public String getOperationList() {
+        String finalList = EMPTY;
         return operationList.stream()
                             .map((list) -> list + NEW_LINE)
                             .reduce(finalList, String::concat);
     }
-   
     
-    public static void ProcessKeys(KeyCode key) {
-        if (key == KeyCode.ENTER)
-            solveFunction();
-        if (key == KeyCode.UP)
-            goPreviousOperation();
-        if (key == KeyCode.DOWN)
-            goNextOperation();
-        if (key == KeyCode.ESCAPE)
-            minimize();
+    
+    public void addToOperations(String value) {
+        operationList.add(value);
+    }
+   
+    public void clearAll() {
+        operationList.clear();
+        view.variables.setText(EMPTY);
     }
 }

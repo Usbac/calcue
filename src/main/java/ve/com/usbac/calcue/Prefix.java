@@ -7,11 +7,12 @@ import java.util.Stack;
  *
  * @author Usbac
  */
-public class Prefix {
+public final class Prefix {
     
-    private final static String EMPTY = "";
-    private final static char NEW_LINE = '\n';
-    static int index = 0;
+    private final String EMPTY = "";
+    private final char NEW_LINE = '\n';
+    
+    private int index = 0;
     
     
     /**
@@ -19,7 +20,7 @@ public class Prefix {
      * @param main the stack
      * @param string the string where the number is
      */
-    public static void processNumberIntoStack(Stack main, String string) {
+    public void processNumberIntoStack(Stack main, String string) {
         String number = EMPTY;
         while (index < string.length() && (Character.isDigit(string.charAt(index)) || string.charAt(index) == '.')) {
             number += string.charAt(index++);
@@ -34,7 +35,7 @@ public class Prefix {
      * @param operators the operators stack
      * @param string the string where the word is
      */
-    public static void processWordIntoStack(Stack main, Stack operators, String string) {
+    public void processWordIntoStack(Stack main, Stack operators, String string) {
         String word = EMPTY;
         while(index < string.length() && Character.isLetter(string.charAt(index))) {
             word += string.charAt(index++);
@@ -56,7 +57,7 @@ public class Prefix {
      * @param operators the operators stack
      * @param string the string where the parenthesis is
      */
-    public static void processParenthesisIntoStack(Stack main, Stack operators, String string) {
+    public void processParenthesisIntoStack(Stack main, Stack operators, String string) {
         while (!operators.isEmpty() && !operators.lastElement().toString().equals("(")) {
             main.push(operators.pop());
         }
@@ -74,7 +75,7 @@ public class Prefix {
      * @param origin the stack which values will be move from
      * @param destiny the stack which values will be move to
      */
-    public static void moveStackFromTo(Stack origin, Stack destiny) {
+    public void moveStackFromTo(Stack origin, Stack destiny) {
         while (!origin.isEmpty()) {
             destiny.push(origin.pop());
         }
@@ -87,7 +88,7 @@ public class Prefix {
      * @param second the second operator
      * @return <code>true</code> if the first operator has more hierarchy than the second, <code>false</code> otherwhise
      */
-    public static boolean hasMoreHierarchy(Object first, Object second) {
+    public boolean hasMoreHierarchy(Object first, Object second) {
         if (first.toString().equals("(") || second.toString().equals("("))
             return false;
          
@@ -116,7 +117,7 @@ public class Prefix {
      * @param second the second operator
      * @return <code>true</code> if the first operator has the same hierarchy than the second, <code>false</code> otherwhise
      */
-    public static boolean hasSameHierarchy(Object first, Object second) {
+    public boolean hasSameHierarchy(Object first, Object second) {
         if (first.toString().equals("(") && second.toString().equals("("))
             return false;
          
@@ -144,7 +145,7 @@ public class Prefix {
      * @param stack the stack
      * @param element the element which will be compared to
      */
-    public static void removeElements(Stack stack, String element) {
+    public void removeElements(Stack stack, String element) {
         for (int i = 0; i < stack.size(); i++) {
             if (stack.elementAt(i).toString().equals(element))
                 stack.remove(i);
@@ -157,7 +158,7 @@ public class Prefix {
      * @param string the string which is in infix notation
      * @return the string converted to prefix notation
      */
-    public static Stack convertToPrefix(String string) {
+    public Stack convertToPrefix(String string) {
         Stack main = new Stack(), 
               operators = new Stack();
         
@@ -196,7 +197,7 @@ public class Prefix {
      * @param object the object to evaluate
      * @return <code>true</code> is the object is a valid number, <code>false</code> otherwhise
      */
-    public static boolean isNumber(Object object) {
+    public boolean isNumber(Object object) {
         try {
             Float.parseFloat(object.toString());
         } catch (Exception e) { 
@@ -211,7 +212,7 @@ public class Prefix {
      * @param o the object to evaluate
      * @return <code>true</code> is the object is a operand, <code>false</code> otherwhise
      */
-    public static boolean isOperand(Object o) {
+    public boolean isOperand(Object o) {
         return (Arrays.asList("+", "-", "*", "/", "^").contains(o.toString()));
     }
     
@@ -221,7 +222,7 @@ public class Prefix {
      * @param o the object to evaluate
      * @return <code>true</code> is the object is a reserved function, <code>false</code> otherwhise
      */
-    public static boolean isFunction(Object o) {
+    public boolean isFunction(Object o) {
         return (Arrays.asList("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "log", "floor", "ceil", "abs", "rand", "%")
                       .contains(o.toString()));
     }
@@ -232,7 +233,7 @@ public class Prefix {
      * @param o the object to evaluate
      * @return <code>true</code> is the object is a variable, <code>false</code> otherwhise
      */
-    public static boolean isVariable(Object o) {
+    public boolean isVariable(Object o) {
         return (!isNumber(o) && !isOperand(o) && !isFunction(o));
     }
     
@@ -244,7 +245,7 @@ public class Prefix {
      * @param b the second number
      * @return the result of the operation
      */
-    public static double solveOperation(Object operand, double a, double b) {
+    public double solveOperation(Object operand, double a, double b) {
         switch (operand.toString()) {
             case "+": return a + b;
             case "-": return a - b;
@@ -262,7 +263,7 @@ public class Prefix {
      * @param a the number
      * @return the result of the operation
      */
-    public static double solveFunction(Object operand, double a) {
+    public double solveFunction(Object operand, double a) {
         switch (operand.toString()) {
             case "abs": return Math.abs(a);
             case "rand": return Math.random()*a;
@@ -287,7 +288,7 @@ public class Prefix {
      * @param stack the stack where the operation is
      * @param i the index where the operation is
      */
-    public static void solveOperationInPrefix(Stack stack, int i) {        
+    public void solveOperationInPrefix(Stack stack, int i) {        
         if (stack.size() > 2) {
             double a = Double.parseDouble(stack.remove(i - 2).toString());
             double b = Double.parseDouble(stack.remove(i - 2).toString());
@@ -306,7 +307,7 @@ public class Prefix {
      * @param stack the stack where the function is
      * @param i the index where the function is
      */
-    public static void solveFunctionInPrefix(Stack stack, int i) {
+    public void solveFunctionInPrefix(Stack stack, int i) {
         double a = Double.parseDouble(stack.remove(i - 1).toString());
         Object operand = stack.remove(i - 1);
         stack.add(i - 1, solveFunction(operand, a));
@@ -319,7 +320,7 @@ public class Prefix {
      * @param values the string with the variable declared
      * @param i the index where the variable is
      */
-    public static void replaceVariableWithValue(Stack stack, String values, int i) {
+    public void replaceVariableWithValue(Stack stack, String values, int i) {
         String variableName = stack.elementAt(i).toString(),
                newValue = EMPTY;
         if (!values.contains(variableName + "=")) {
@@ -343,7 +344,7 @@ public class Prefix {
      * @param values the string with variables declarated
      * @return a one size stack with the result
      */
-    public static Stack solvePrefix(Stack stack, String values) {
+    public Stack solvePrefix(Stack stack, String values) {
         for (int i = 0; i < stack.size(); i++) {
             if (isOperand(stack.elementAt(i))) {
                 solveOperationInPrefix(stack, i);
@@ -373,7 +374,7 @@ public class Prefix {
      * @param values the string with variables declarated
      * @return the result of the function
      */
-    public static String convertToAndSolvePrefix(String string, String values) {
+    public String convertToAndSolvePrefix(String string, String values) {
         string = string.replaceAll(" ", EMPTY);
         values = values.replaceAll(" ", EMPTY);
         Stack main = convertToPrefix(string);
