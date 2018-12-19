@@ -22,6 +22,7 @@ public final class FileManager {
     View view;
     Controller controller;
     
+    
     public FileManager(View v, Controller c) {
         view = v;
         controller = c;
@@ -82,13 +83,13 @@ public final class FileManager {
     public void readFromFile(File file) throws FileNotFoundException {
         BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
         String auxText;
+        controller.clearAll();
         try {
             if (VARIABLES_TAG.equals(auxText = br.readLine())) {
                 while((auxText = br.readLine()) != null && !OPERATIONS_TAG.equals(auxText))
                     view.variables.setText(view.variables.getText() + auxText + NEW_LINE);
                 
                 if (OPERATIONS_TAG.equals(auxText)) {
-                    controller.clearAll();
                     while((auxText = br.readLine()) != null)
                         controller.addToOperations(auxText);
                     controller.setLastOperations();

@@ -154,6 +154,23 @@ public final class Prefix {
     
     
     /**
+     * Adds the missing multiplication symbols in the function
+     * @param string the function
+     * @return the function with the extra multiply symbols added
+     */
+    public String addMultiplication(String string) {
+        String newString = string;
+        for (int i = 0; i < newString.length(); i++) {
+            if (Character.isDigit(newString.charAt(i)) && i+1 < newString.length() &&
+               (Character.isLetter(newString.charAt(i+1)) || newString.charAt(i+1) == '(')) {
+                newString = new StringBuilder(newString).insert(++i, "*").toString();
+            }
+        }
+        return newString;
+    }
+    
+    
+    /**
      * Converts a string in infix notation to prefix notation
      * @param string the string which is in infix notation
      * @return the string converted to prefix notation
@@ -200,8 +217,8 @@ public final class Prefix {
     public boolean isNumber(Object object) {
         try {
             Float.parseFloat(object.toString());
-        } catch (Exception e) { 
-            return false; 
+        } catch (NumberFormatException e) { 
+            return false;
         }
         return true;
     }
@@ -370,18 +387,18 @@ public final class Prefix {
     
     /**
      * Converts a function from Infix to Prefix and solves it
-     * @param string the Infix function
-     * @param values the string with variables declarated
+     * @param function the Infix function
+     * @param values the function with variables declarated
      * @return the result of the function
      */
-    public String convertToAndSolvePrefix(String string, String values) {
-        string = string.replaceAll(" ", EMPTY);
+    public String convertToAndSolvePrefix(String function, String values) {
+        function = function.replaceAll(" ", EMPTY);
+        function = addMultiplication(function);
         values = values.replaceAll(" ", EMPTY);
-        Stack main = convertToPrefix(string);
+        Stack main = convertToPrefix(function);
         Double result = Double.parseDouble(solvePrefix(main, values)
                               .firstElement()
                               .toString());
-        
         //Round
         if (result % 1 == 0)
             return String.valueOf(result.intValue());

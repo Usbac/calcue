@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 
 public class Calcue extends Application {
     
-    final static int WIDTH = 450;
+    final int WIDTH = 450;
     final String MAIN_STYLE = "/styles/Styles.css";
     final String DARK_THEME = "/styles/DarkTheme.css";
     final String SCENE = "/fxml/Scene.fxml";

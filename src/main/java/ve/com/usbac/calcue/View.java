@@ -6,8 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -30,7 +29,7 @@ public class View implements Initializable {
     final String ICON_PATH = "/images/icon.png";
     final String LINK = "https://github.com/Usbac/Calcue";
     final String ABOUT_TITLE = "Calcue Information";
-    final String ABOUT_HEADER = "Calcue v0.9";
+    final String ABOUT_HEADER = "Calcue v0.9.1";
     final String ABOUT_TEXT = "Created by USBAC \n"
                             + "Click the Calcue logo for more information \n"
                             + "about the reserved functions and how to use.";

@@ -1,7 +1,6 @@
 package ve.com.usbac.calcue;
 
 import java.util.ArrayList;
-import javafx.scene.input.*;
 
 public final class Controller {
 
@@ -83,8 +82,11 @@ public final class Controller {
         operationList.add(value);
     }
    
+    
     public void clearAll() {
         operationList.clear();
+        view.function.setText(EMPTY);
+        view.previousFunction.setText(EMPTY);
         view.variables.setText(EMPTY);
     }
 }

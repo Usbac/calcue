@@ -13,10 +13,10 @@
 
 <AnchorPane id="AnchorPane" fx:id="ap" prefHeight="434.0" prefWidth="459.0" styleClass="main" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.usbac.calcue.View">
     <children>
-      <TextArea fx:id="variables" layoutX="4.0" layoutY="75.0" prefHeight="270.0" prefWidth="204.0" styleClass="text-area" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="242.0" />
-      <TextField fx:id="function" alignment="CENTER_RIGHT" layoutX="6.0" layoutY="23.0" prefHeight="32.0" prefWidth="449.0" styleClass="textfield" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="90.0">
+      <TextArea fx:id="variables" layoutX="4.0" layoutY="75.0" prefHeight="270.0" prefWidth="204.0" styleClass="text-area" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="242.0" />
+      <TextField fx:id="function" alignment="CENTER_RIGHT" layoutX="6.0" layoutY="23.0" prefHeight="35.0" prefWidth="449.0" styleClass="textfield" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="88.0">
          <font>
-            <Font size="20.0" />
+            <Font size="23.0" />
          </font></TextField>
       <AnchorPane layoutX="208.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -111,18 +111,18 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="428.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickUp" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↑" textFill="WHITE" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+      <Button layoutX="428.0" layoutY="7.0" mnemonicParsing="false" onAction="#onClickUp" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↑" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="438.0" layoutY="17.0" mnemonicParsing="false" onAction="#onClickDown" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↓" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="35.0">
+      <Button layoutX="438.0" layoutY="17.0" mnemonicParsing="false" onAction="#onClickDown" prefHeight="25.0" prefWidth="26.0" styleClass="OptionalButton" text="↓" textFill="WHITE" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="35.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="variablesButton" layoutX="156.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearVariables" prefHeight="29.0" prefWidth="60.0" styleClass="OptionalButton" text="CLEAR" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="240.0" />
-      <Button fx:id="toggleHistory" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="4.0" layoutY="379.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onClickHistory" prefHeight="25.0" prefWidth="119.0" styleClass="OptionalButton" text="SHOW HISTORY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" />
+      <Button fx:id="variablesButton" layoutX="156.0" layoutY="347.0" mnemonicParsing="false" onAction="#clearVariables" prefHeight="29.0" prefWidth="60.0" styleClass="OptionalButton" text="CLEAR" AnchorPane.bottomAnchor="-1.0" AnchorPane.rightAnchor="240.0" />
+      <Button fx:id="toggleHistory" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="4.0" layoutY="379.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onClickHistory" prefHeight="29.0" prefWidth="137.0" styleClass="OptionalButton" text="SHOW HISTORY" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="2.0" />
       <Button alignment="CENTER" layoutX="414.0" layoutY="-1.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="35.0" styleClass="closeButton" text="×" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="18.0" />
