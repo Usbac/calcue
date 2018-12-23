@@ -47,8 +47,11 @@
 
 ## Download
 
-[Calcue v0.9.0](https://github.com/Usbac/Calcue/releases/download/v0.9.0/Calcue.0.9.jar) </br>
-*JRE required*
+[Calcue v0.9.2](https://github.com/Usbac/Calcue/releases/download/v0.9.2/Calcue-0.9.2.jar) </br>
+*JAVA required*
+
+[Calcue v0.9.2 - Windows](https://github.com/Usbac/Calcue/releases/download/v0.9.2/Calcue.0.9.2.Windows.zip) </br>
+*Comes with its installer and NO JAVA required*
 
 
 ## Contributing

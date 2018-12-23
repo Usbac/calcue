@@ -11,7 +11,7 @@ public final class Controller {
     private final Prefix prefix;
     
     public FileManager file;
-    private final ArrayList<String> operationList;
+    private final ArrayList<String> operations;
     String variablesBackup;
     int operationIndex;
     
@@ -20,15 +20,17 @@ public final class Controller {
         view = v;
         prefix = new Prefix();
         file = new FileManager(view, this);
-        operationList = new ArrayList<>();
+        operations = new ArrayList<>();
         operationIndex = 0;
     }
     
     
     public void setLastOperations() {
-        operationIndex = operationList.size() - 1;
-        view.previousFunction.setText(operationList.get(operationIndex - 1));
-        view.function.setText(operationList.get(operationIndex));
+        operationIndex = operations.size() - 1;
+        if (operationIndex > 1)
+            view.previousFunction.setText(operations.get(operationIndex - 1));
+        if (operationIndex > 0)
+            view.function.setText(operations.get(operationIndex));
     }
     
     
@@ -36,34 +38,39 @@ public final class Controller {
         if (operationIndex <= 0)
             return;
         operationIndex--;
-        view.previousFunction.setText(operationIndex != 0? operationList.get(operationIndex - 1): EMPTY);
-        view.function.setText(operationList.get(operationIndex));
+        view.previousFunction.setText(operationIndex != 0? operations.get(operationIndex - 1): EMPTY);
+        view.function.setText(operations.get(operationIndex));
     }
     
 
     public void goNextOperation() {
-        if (operationIndex >= operationList.size() - 1)
+        if (operationIndex >= operations.size() - 1)
             return;
         operationIndex++;
-        view.previousFunction.setText(operationList.get(operationIndex - 1));
-        view.function.setText(operationList.get(operationIndex));
+        view.previousFunction.setText(operations.get(operationIndex - 1));
+        view.function.setText(operations.get(operationIndex));
     }
     
     
     public void solveFunction() {
-        operationList.add(view.function.getText());
-        view.previousFunction.setText(view.function.getText());
-        operationIndex = operationList.size() - 1;
+        if (view.function.getText().isEmpty())
+            return;
+            
+        operations.add(view.function.getText());
+        operationIndex = operations.size() - 1;
+        view.previousFunction.setText(operations.get(operationIndex));
+        
         String result;
         
         try {
-            result = prefix.convertToAndSolvePrefix(view.function.getText(), view.variables.getText());
+            result = prefix.convertToPrefixAndSolve(view.function.getText(), view.variables.getText());
         } catch (Exception e) {
             view.function.setText(ERROR_MSG);
             return;
         }
         
-        if (!operationList.get(operationIndex).matches(result)) {
+        //Don't add the result to the history if that result is the same as the previous
+        if (!operations.get(operationIndex).matches(result)) {
             addToOperations(result);
             view.function.setText(result);
         }
@@ -72,19 +79,20 @@ public final class Controller {
     
     public String getOperationList() {
         String finalList = EMPTY;
-        return operationList.stream()
-                            .map((list) -> list + NEW_LINE)
-                            .reduce(finalList, String::concat);
+        return operations.stream()
+                         .map((list) -> list + NEW_LINE)
+                         .reduce(finalList, String::concat);
     }
     
     
     public void addToOperations(String value) {
-        operationList.add(value);
+        operations.add(value);
+        operationIndex = operations.size() - 1;
     }
    
     
     public void clearAll() {
-        operationList.clear();
+        operations.clear();
         view.function.setText(EMPTY);
         view.previousFunction.setText(EMPTY);
         view.variables.setText(EMPTY);

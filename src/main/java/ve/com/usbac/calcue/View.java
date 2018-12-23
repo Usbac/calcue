@@ -29,7 +29,7 @@ public class View implements Initializable {
     final String ICON_PATH = "/images/icon.png";
     final String LINK = "https://github.com/Usbac/Calcue";
     final String ABOUT_TITLE = "Calcue Information";
-    final String ABOUT_HEADER = "Calcue v0.9.1";
+    final String ABOUT_HEADER = "Calcue v0.9.2";
     final String ABOUT_TEXT = "Created by USBAC \n"
                             + "Click the Calcue logo for more information \n"
                             + "about the reserved functions and how to use.";
@@ -84,12 +84,12 @@ public class View implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION, ABOUT_TEXT, ButtonType.OK);
         alert.setTitle(ABOUT_TITLE);
         alert.setHeaderText(ABOUT_HEADER);
-        alert.getDialogPane().setGraphic(getImg());
+        alert.getDialogPane().setGraphic(getImageIcon());
         alert.showAndWait();
     }
     
     
-    private ImageView getImg() {
+    private ImageView getImageIcon() {
         ImageView img = new ImageView(ICON_PATH);
         img.setFitHeight(LOGO_SIZE);
         img.setFitWidth(LOGO_SIZE);
@@ -149,7 +149,6 @@ public class View implements Initializable {
         stage.getScene().getStylesheets().add(STYLES_FOLDER + (darkTheme? "Dark":"Light") + STYLE_FILE_SUFFIX);
         stage.getScene().getStylesheets().remove(STYLES_FOLDER + (darkTheme? "Light":"Dark") + STYLE_FILE_SUFFIX);
         optionTheme.setText(darkTheme? LIGHT_THEME : DARK_THEME);
-        
     }
     
     
@@ -178,16 +177,16 @@ public class View implements Initializable {
     
     
     @FXML
-    public void minimize(ActionEvent event) {
-        stage = (Stage) ap.getScene().getWindow();
-        stage.setIconified(true);
+    private void exit(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
     }
     
     
     @FXML
-    private void exit(ActionEvent event) {
-        Platform.exit();
-        System.exit(0);
+    public void minimize(ActionEvent event) {
+        stage = (Stage) ap.getScene().getWindow();
+        stage.setIconified(true);
     }
     
 
@@ -210,12 +209,15 @@ public class View implements Initializable {
         });
         
         ap.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ESCAPE)
+                minimize(null);
             if (event.getCode() == KeyCode.ENTER)
                 onClickEquals(null);
             if (event.getCode() == KeyCode.UP)
                 onClickUp(null);
             if (event.getCode() == KeyCode.DOWN)
                 onClickDown(null);
+            
             //Save
             if (CTRL_S.match(event)) {
                 try {

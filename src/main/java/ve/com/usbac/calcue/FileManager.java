@@ -26,16 +26,11 @@ public final class FileManager {
     public FileManager(View v, Controller c) {
         view = v;
         controller = c;
+        FILE_CHOOSER.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(" + FILE_FORMAT + ")", FILE_FORMAT));
     }
 
     
-    public void setFilterFile() {
-        FILE_CHOOSER.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(" + FILE_FORMAT + ")", FILE_FORMAT));
-    }
-    
-    
     public void openFile() throws FileNotFoundException {
-        setFilterFile();
         File file = FILE_CHOOSER.showOpenDialog(View.stage);
         if (file != null) {
             filePath = file.toString();
@@ -45,7 +40,6 @@ public final class FileManager {
     
     
     public void saveFile() throws IOException {
-        setFilterFile();
         File saveFile = new File(filePath);
         if (saveFile.exists()) {
             saveFile.delete();

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="434.0" prefWidth="459.0" styleClass="main" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.usbac.calcue.View">
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="434.0" prefWidth="459.0" styleClass="main" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.usbac.calcue.View">
     <children>
       <TextArea fx:id="variables" layoutX="4.0" layoutY="75.0" prefHeight="270.0" prefWidth="204.0" styleClass="text-area" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="242.0" />
       <TextField fx:id="function" alignment="CENTER_RIGHT" layoutX="6.0" layoutY="23.0" prefHeight="35.0" prefWidth="449.0" styleClass="textfield" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="88.0">

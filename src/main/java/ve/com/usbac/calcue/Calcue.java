@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 public class Calcue extends Application {
     
     final int WIDTH = 450;
+    final String ICON = "/images/icon.png";
     final String MAIN_STYLE = "/styles/Styles.css";
     final String DARK_THEME = "/styles/DarkTheme.css";
     final String SCENE = "/fxml/Scene.fxml";
@@ -24,7 +25,7 @@ public class Calcue extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(MAIN_STYLE);
         scene.getStylesheets().add(DARK_THEME);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icon.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(ICON)));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle(TITLE);
         stage.setScene(scene);

@@ -10,6 +10,7 @@ import java.util.Stack;
 public final class Prefix {
     
     private final String EMPTY = "";
+    private final String DECIMAL_PLACES = "%.4f";
     private final char NEW_LINE = '\n';
     
     private int index = 0;
@@ -95,16 +96,16 @@ public final class Prefix {
         if (isFunction(first) && !isFunction(second))
             return true;
 
-        if (first.toString().equals("^") || first.toString().equals("sqrt") || first.toString().equals("%")) {
-            return !(second.toString().equals("^") || second.toString().equals("sqrt") || second.toString().equals("%"));
+        if (Arrays.asList("^", "sqrt", "%").contains(first.toString())) {
+            return !(Arrays.asList("^", "sqrt", "%").contains(second.toString()));
         }
         
-        if (first.toString().equals("/") || first.toString().equals("*")) {
-            return (second.toString().equals("+") || second.toString().equals("-"));
+        if (Arrays.asList("/", "*").contains(first.toString())) {
+            return (Arrays.asList("+", "-").contains(second.toString()));
         }
         
-        if (!(first.toString().equals("+") || first.toString().equals("-"))) {
-            return (second.toString().equals("+") || second.toString().equals("-"));
+        if (!Arrays.asList("+", "-").contains(first.toString())) {
+            return (Arrays.asList("+", "-").contains(second.toString()));
         }
         
         return false;
@@ -123,17 +124,17 @@ public final class Prefix {
          
         if (isFunction(first) && isFunction(second))
             return true;
-
-        if (first.toString().equals("^") || first.toString().equals("sqrt") || first.toString().equals("%")) {
-            return (second.toString().equals("^") || second.toString().equals("sqrt") || second.toString().equals("%"));
+        
+        if (Arrays.asList("^", "sqrt", "%").contains(first.toString())) {
+            return (Arrays.asList("^", "sqrt", "%").contains(second.toString()));
         }
       
-        if (first.toString().equals("/") || first.toString().equals("*")) {
-            return (second.toString().equals("/") || second.toString().equals("*"));
+        if (Arrays.asList("/", "*").contains(first.toString())) {
+            return (Arrays.asList("/", "*").contains(second.toString()));
         }
                 
-        if (first.toString().equals("+") || first.toString().equals("-")) {
-            return (second.toString().equals("+") || second.toString().equals("-"));
+        if (Arrays.asList("+", "-").contains(first.toString())) {
+            return (Arrays.asList("+", "-").contains(second.toString()));
         }
         
         return false;
@@ -161,7 +162,7 @@ public final class Prefix {
     public String addMultiplication(String string) {
         String newString = string;
         for (int i = 0; i < newString.length(); i++) {
-            if (Character.isDigit(newString.charAt(i)) && i+1 < newString.length() &&
+            if (i+1 < newString.length() && Character.isDigit(newString.charAt(i)) &&
                (Character.isLetter(newString.charAt(i+1)) || newString.charAt(i+1) == '(')) {
                 newString = new StringBuilder(newString).insert(++i, "*").toString();
             }
@@ -351,7 +352,7 @@ public final class Prefix {
             newValue += values.charAt(variablePosition++);
         }
         
-        stack.set(i, convertToAndSolvePrefix(newValue, values));
+        stack.set(i, convertToPrefixAndSolve(newValue, values));
     }
 
     
@@ -378,10 +379,24 @@ public final class Prefix {
                 break;
             }
         }
-        //Recursive until solve all the operations
+        //Recursive until all the operations are done
         if (stack.size() > 1)
             solvePrefix(stack, values);
         return stack;
+    }
+    
+    
+    /**
+     * Returns the number without decimal point if it doesn't have decimals
+     * or the number rounded to 4 decimals if it has it
+     * @param number the number
+     * @return the number without decimal point if it doesn't have decimals 
+     * or the number rounded to 4 decimals if it has it
+     */
+    public String getFormatedNumber(Double number) {
+        if (number % 1 == 0)
+            return String.valueOf(number.intValue());
+        return String.format(DECIMAL_PLACES, number);
     }
     
     
@@ -391,7 +406,7 @@ public final class Prefix {
      * @param values the function with variables declarated
      * @return the result of the function
      */
-    public String convertToAndSolvePrefix(String function, String values) {
+    public String convertToPrefixAndSolve(String function, String values) {
         function = function.replaceAll(" ", EMPTY);
         function = addMultiplication(function);
         values = values.replaceAll(" ", EMPTY);
@@ -399,10 +414,7 @@ public final class Prefix {
         Double result = Double.parseDouble(solvePrefix(main, values)
                               .firstElement()
                               .toString());
-        //Round
-        if (result % 1 == 0)
-            return String.valueOf(result.intValue());
-        return String.format("%.4f", result);
+        return getFormatedNumber(result);
     }
     
 }
