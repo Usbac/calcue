@@ -21,8 +21,6 @@ import javafx.stage.Stage;
 
 public class View implements Initializable {
     
-    final KeyCombination CTRL_O = new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN);
-    final KeyCombination CTRL_S = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN);
     final int FULLSIZE_WIDTH = 450;
     final int SMALLSIZE_WIDTH = 237;
     final int LOGO_SIZE = 65;
@@ -47,6 +45,8 @@ public class View implements Initializable {
     boolean showingVariables, showingAbout;
     boolean darkTheme;
     
+    @FXML
+    ToggleGroup decimalsToggle;
     @FXML 
     protected AnchorPane ap;
     @FXML
@@ -55,6 +55,8 @@ public class View implements Initializable {
     protected TextArea variables;
     @FXML
     protected Text previousFunction;
+    @FXML
+    protected Menu decimals;
     @FXML
     protected MenuItem optionSide, optionTheme;
     @FXML
@@ -89,6 +91,12 @@ public class View implements Initializable {
     }
     
     
+    @FXML
+    private void setDecimals(ActionEvent event) {
+        controller.setDecimals(((RadioMenuItem)event.getSource()).getText());
+    }
+    
+    
     private ImageView getImageIcon() {
         ImageView img = new ImageView(ICON_PATH);
         img.setFitHeight(LOGO_SIZE);
@@ -106,8 +114,7 @@ public class View implements Initializable {
     
     @FXML
     private void add(ActionEvent event) {
-        Node node = (Node) event.getSource();
-        String newValue = (String) node.getUserData();
+        String newValue = ((Node) event.getSource()).getUserData().toString();
         function.setText(function.getText() + newValue);
     }
     
@@ -196,9 +203,11 @@ public class View implements Initializable {
         optionTheme.setText(LIGHT_THEME);
         darkTheme = true;
         showingVariables = true;
+        function.setFocusTraversable(true);
+        variables.setFocusTraversable(true);
         initializeInput();
     }
-    
+
     
     public void initializeInput() {
         function.setOnKeyPressed((KeyEvent event) -> {
@@ -217,23 +226,6 @@ public class View implements Initializable {
                 onClickUp(null);
             if (event.getCode() == KeyCode.DOWN)
                 onClickDown(null);
-            
-            //Save
-            if (CTRL_S.match(event)) {
-                try {
-                    controller.file.saveFile();
-                } catch (IOException ex) {
-                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            //Open
-            if (CTRL_O.match(event)) {
-                try {
-                    controller.file.openFile();
-                } catch (IOException ex) {
-                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-                }                
-            }
         });
     }
 }

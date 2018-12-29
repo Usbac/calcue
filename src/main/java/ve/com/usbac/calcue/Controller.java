@@ -27,7 +27,7 @@ public final class Controller {
     
     public void setLastOperations() {
         operationIndex = operations.size() - 1;
-        if (operationIndex > 1)
+        if (operationIndex >= 1)
             view.previousFunction.setText(operations.get(operationIndex - 1));
         if (operationIndex > 0)
             view.function.setText(operations.get(operationIndex));
@@ -49,6 +49,11 @@ public final class Controller {
         operationIndex++;
         view.previousFunction.setText(operations.get(operationIndex - 1));
         view.function.setText(operations.get(operationIndex));
+    }
+    
+    
+    public void setDecimals(String number) {
+        prefix.decimalPlaces = "%." + number + "f";
     }
     
     

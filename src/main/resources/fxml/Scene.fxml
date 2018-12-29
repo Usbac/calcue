@@ -5,8 +5,11 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -88,15 +91,38 @@
         <menus>
           <Menu mnemonicParsing="false" styleClass="menuBar" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onClickOpen" text="Open (Ctrl+O)" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickSave" text="Save (Ctrl+S)" />
-                  <MenuItem mnemonicParsing="false" onAction="#onClickSaveAs" text="Save as" />
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#onClickOpen" text="Open">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickSave" text="Save">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#onClickSaveAs" text="Save as">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Options">
             <items>
               <MenuItem fx:id="optionTheme" mnemonicParsing="false" onAction="#onClickTheme" text="Theme" />
+                  <Menu fx:id="decimals" mnemonicParsing="false" text="Decimals">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" onAction="#setDecimals" text="2">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="decimalList" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" onAction="#setDecimals" text="4" toggleGroup="$decimalList" />
+                        <RadioMenuItem mnemonicParsing="false" onAction="#setDecimals" text="6" toggleGroup="$decimalList" />
+                        <RadioMenuItem mnemonicParsing="false" onAction="#setDecimals" text="8" toggleGroup="$decimalList" />
+                     </items></Menu>
                   <MenuItem fx:id="optionSide" mnemonicParsing="false" onAction="#ToggleSide" text="Compact" />
             </items>
           </Menu>

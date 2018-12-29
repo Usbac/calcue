@@ -10,10 +10,11 @@ import java.util.Stack;
 public final class Prefix {
     
     private final String EMPTY = "";
-    private final String DECIMAL_PLACES = "%.4f";
     private final char NEW_LINE = '\n';
     
     private int index = 0;
+    
+    public String decimalPlaces = "%.4f";
     
     
     /**
@@ -396,7 +397,7 @@ public final class Prefix {
     public String getFormatedNumber(Double number) {
         if (number % 1 == 0)
             return String.valueOf(number.intValue());
-        return String.format(DECIMAL_PLACES, number);
+        return String.format(decimalPlaces, number);
     }
     
     

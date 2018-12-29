@@ -19,14 +19,15 @@
 
 ## Features
 
-* Multiple predefined functions
 * Use of variables
+* Multiple predefined functions
 * Save and load data from files
 * Operations history
 * Platform independent
+* Dark and light theme
 * Easy to use UI
 * Compact design
-* Dark and light theme
+* And more...
 
 </br>
 <p align="center">
@@ -44,13 +45,15 @@
 * ABS - The absolute number of a value
 * RAND - Random number between zero and the indicated value
 
+More information about the reserved functions and how to use the software available in the [Wiki](https://github.com/Usbac/Calcue/wiki)
+
 
 ## Download
 
-[Calcue v0.9.2](https://github.com/Usbac/Calcue/releases/download/v0.9.2/Calcue-0.9.2.jar) </br>
+[Calcue v1.0.0](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue-1.0.0.jar) </br>
 *JAVA required*
 
-[Calcue v0.9.2 - Windows](https://github.com/Usbac/Calcue/releases/download/v0.9.2/Calcue.0.9.2.Windows.zip) </br>
+[Calcue v1.0.0 - Windows](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue.1.0.0.Windows.zip) </br>
 *Comes with its installer and NO JAVA required*
 
 
