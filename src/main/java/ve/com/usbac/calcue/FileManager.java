@@ -65,11 +65,11 @@ public final class FileManager {
         out = new FileWriter(file.toString());
         out.write(VARIABLES_TAG);
         out.write(NEW_LINE);
-        out.write(view.variables.getText().replace("\n", NEW_LINE));
+        out.write(view.getVariables().replace("\n", NEW_LINE));
         out.write(NEW_LINE);
         out.write(OPERATIONS_TAG);
         out.write(NEW_LINE);
-        out.write(controller.getOperationList());
+        out.write(controller.getOperations());
         out.close();
     }
     
@@ -81,12 +81,12 @@ public final class FileManager {
         try {
             if (VARIABLES_TAG.equals(auxText = br.readLine())) {
                 while((auxText = br.readLine()) != null && !OPERATIONS_TAG.equals(auxText))
-                    view.variables.setText(view.variables.getText() + auxText + NEW_LINE);
+                    view.variables.setText(view.getVariables() + auxText + NEW_LINE);
                 
                 if (OPERATIONS_TAG.equals(auxText)) {
                     while((auxText = br.readLine()) != null)
                         controller.addToOperations(auxText);
-                    controller.setLastOperations();
+                    controller.updateLastOperations();
                     return;
                 }
             }

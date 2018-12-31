@@ -348,12 +348,11 @@ public final class Prefix {
         }
         
         int variablePosition = values.lastIndexOf(variableName + "=") + variableName.length() + 1;
-        values = values.replaceAll(";", String.valueOf(NEW_LINE));
         while (variablePosition < values.length() && values.charAt(variablePosition) != NEW_LINE) {
             newValue += values.charAt(variablePosition++);
         }
         
-        stack.set(i, convertToPrefixAndSolve(newValue, values));
+        stack.set(i, getResult(newValue, values));
     }
 
     
@@ -402,20 +401,35 @@ public final class Prefix {
     
     
     /**
+     * Returns the function fixed (No empty spaces and with multiplication symbols)
+     * @param function the function
+     * @return the function fixed (No empty spaces and with multiplication symbols)
+     */
+    public String fixFunction(String function) {
+        return addMultiplication(function.replaceAll(" ", EMPTY));
+    }
+    
+    
+    /**
+     * Returns the variables fixed (No empty spaces and with semicolons instead of line breaks)
+     * @param variables the variables
+     * @return the variables fixed (No empty spaces and with semicolons instead of line breaks)
+     */
+    public String fixVariables(String variables) {
+        return variables.replaceAll(" ", EMPTY).replaceAll(";", String.valueOf(NEW_LINE));
+    }
+    
+    
+    /**
      * Converts a function from Infix to Prefix and solves it
      * @param function the Infix function
-     * @param values the function with variables declarated
+     * @param variables the variables list
      * @return the result of the function
      */
-    public String convertToPrefixAndSolve(String function, String values) {
-        function = function.replaceAll(" ", EMPTY);
-        function = addMultiplication(function);
-        values = values.replaceAll(" ", EMPTY);
-        Stack main = convertToPrefix(function);
-        Double result = Double.parseDouble(solvePrefix(main, values)
-                              .firstElement()
-                              .toString());
-        return getFormatedNumber(result);
+    public String getResult(String function, String variables) {
+        Stack main = convertToPrefix(fixFunction(function));
+        String result = solvePrefix(main, fixVariables(variables)).firstElement().toString();
+        return getFormatedNumber(Double.parseDouble(result));
     }
     
 }

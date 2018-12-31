@@ -25,7 +25,7 @@ public final class Controller {
     }
     
     
-    public void setLastOperations() {
+    public void updateLastOperations() {
         operationIndex = operations.size() - 1;
         if (operationIndex >= 1)
             view.previousFunction.setText(operations.get(operationIndex - 1));
@@ -58,17 +58,17 @@ public final class Controller {
     
     
     public void solveFunction() {
-        if (view.function.getText().isEmpty())
+        if (view.getFunction().isEmpty())
             return;
             
-        operations.add(view.function.getText());
+        operations.add(view.getFunction());
         operationIndex = operations.size() - 1;
         view.previousFunction.setText(operations.get(operationIndex));
         
         String result;
         
         try {
-            result = prefix.convertToPrefixAndSolve(view.function.getText(), view.variables.getText());
+            result = prefix.getResult(view.getFunction(), view.getVariables());
         } catch (Exception e) {
             view.function.setText(ERROR_MSG);
             return;
@@ -82,7 +82,7 @@ public final class Controller {
     }
     
     
-    public String getOperationList() {
+    public String getOperations() {
         String finalList = EMPTY;
         return operations.stream()
                          .map((list) -> list + NEW_LINE)

@@ -1,10 +1,8 @@
 package ve.com.usbac.calcue;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URI;
+import java.io.*;
+import java.net.*;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.*;
 import javafx.application.Platform;
@@ -42,11 +40,17 @@ public class View implements Initializable {
     
     Controller controller;
     static Stage stage;
-    boolean showingVariables, showingAbout;
-    boolean darkTheme;
+    Theme theme;
+    Sidebar sidebar;
     
-    @FXML
-    ToggleGroup decimalsToggle;
+    enum Theme {
+        DARK, LIGHT
+    }
+    
+    enum Sidebar {
+        VARIABLES, HISTORY
+    }
+    
     @FXML 
     protected AnchorPane ap;
     @FXML
@@ -56,11 +60,19 @@ public class View implements Initializable {
     @FXML
     protected Text previousFunction;
     @FXML
-    protected Menu decimals;
-    @FXML
     protected MenuItem optionSide, optionTheme;
     @FXML
     protected Button toggleHistory, variablesButton;
+    
+    
+    public String getFunction() {
+        return function.getText();
+    }
+    
+    
+    public String getVariables() {
+        return variables.getText();
+    }
 
         
     @FXML
@@ -151,33 +163,32 @@ public class View implements Initializable {
     
     @FXML
     private void onClickTheme(ActionEvent event) {
-        darkTheme = !darkTheme;
+        theme = (theme == Theme.DARK)? Theme.LIGHT: Theme.DARK;
+        optionTheme.setText(theme == Theme.DARK? LIGHT_THEME : DARK_THEME);
         stage = (Stage) ap.getScene().getWindow();
-        stage.getScene().getStylesheets().add(STYLES_FOLDER + (darkTheme? "Dark":"Light") + STYLE_FILE_SUFFIX);
-        stage.getScene().getStylesheets().remove(STYLES_FOLDER + (darkTheme? "Light":"Dark") + STYLE_FILE_SUFFIX);
-        optionTheme.setText(darkTheme? LIGHT_THEME : DARK_THEME);
+        stage.getScene().getStylesheets().add(STYLES_FOLDER + (theme == Theme.DARK? "Dark":"Light") + STYLE_FILE_SUFFIX);
+        stage.getScene().getStylesheets().remove(STYLES_FOLDER + (theme == Theme.DARK? "Light":"Dark") + STYLE_FILE_SUFFIX);
     }
     
     
     @FXML
     private void ToggleSide(ActionEvent event) {
-        stage = (Stage) ap.getScene().getWindow();
         variables.setVisible(!variables.isVisible());
         toggleHistory.setVisible(!toggleHistory.isVisible());
         optionSide.setText(variables.isVisible()? COMPACT:EXPAND);
-        stage.setWidth(variables.isVisible()? FULLSIZE_WIDTH:SMALLSIZE_WIDTH);
+        ((Stage)ap.getScene().getWindow()).setWidth(variables.isVisible()? FULLSIZE_WIDTH:SMALLSIZE_WIDTH);
     }
     
     
     @FXML
     private void onClickHistory(ActionEvent event) {
-        showingVariables = !showingVariables;
-        if (showingVariables) {
+        sidebar = (sidebar == Sidebar.VARIABLES)? Sidebar.HISTORY: Sidebar.VARIABLES;
+        if (sidebar == Sidebar.VARIABLES) {
             variables.setText(controller.variablesBackup);
             toggleHistory.setText(SHOW_HISTORY);
         } else {
             controller.variablesBackup = variables.getText();
-            variables.setText(controller.getOperationList());
+            variables.setText(controller.getOperations());
             toggleHistory.setText(SHOW_VARIABLES);
         }
     }
@@ -186,14 +197,12 @@ public class View implements Initializable {
     @FXML
     private void exit(ActionEvent event) {
         Platform.exit();
-        System.exit(0);
     }
     
     
     @FXML
     public void minimize(ActionEvent event) {
-        stage = (Stage) ap.getScene().getWindow();
-        stage.setIconified(true);
+        ((Stage)ap.getScene().getWindow()).setIconified(true);
     }
     
 
@@ -201,10 +210,8 @@ public class View implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         controller = new Controller(this);
         optionTheme.setText(LIGHT_THEME);
-        darkTheme = true;
-        showingVariables = true;
-        function.setFocusTraversable(true);
-        variables.setFocusTraversable(true);
+        theme = Theme.DARK;
+        sidebar = Sidebar.VARIABLES;
         initializeInput();
     }
 
