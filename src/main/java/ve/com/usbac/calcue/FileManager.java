@@ -19,19 +19,20 @@ public final class FileManager {
     public final FileChooser FILE_CHOOSER = new FileChooser();
     
     String filePath = "";
-    View view;
     Controller controller;
+    Model model;
     
     
-    public FileManager(View v, Controller c) {
-        view = v;
+    public FileManager(Controller c, Model m) {
         controller = c;
-        FILE_CHOOSER.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text doc(" + FILE_FORMAT + ")", FILE_FORMAT));
+        model = m;
+        FILE_CHOOSER.getExtensionFilters()
+                    .add(new FileChooser.ExtensionFilter("Text doc(" + FILE_FORMAT + ")", FILE_FORMAT));
     }
 
     
     public void openFile() throws FileNotFoundException {
-        File file = FILE_CHOOSER.showOpenDialog(View.stage);
+        File file = FILE_CHOOSER.showOpenDialog(Controller.stage);
         if (file != null) {
             filePath = file.toString();
             readFromFile(file);
@@ -51,7 +52,7 @@ public final class FileManager {
     
     
     public void saveFileAs() throws IOException {
-        writeToFile(FILE_CHOOSER.showSaveDialog(View.stage));
+        writeToFile(FILE_CHOOSER.showSaveDialog(Controller.stage));
     }
     
     
@@ -65,11 +66,11 @@ public final class FileManager {
         out = new FileWriter(file.toString());
         out.write(VARIABLES_TAG);
         out.write(NEW_LINE);
-        out.write(view.getVariables().replace("\n", NEW_LINE));
+        out.write(controller.getVariables().replace("\n", NEW_LINE));
         out.write(NEW_LINE);
         out.write(OPERATIONS_TAG);
         out.write(NEW_LINE);
-        out.write(controller.getOperations());
+        out.write(model.getOperations());
         out.close();
     }
     
@@ -77,22 +78,22 @@ public final class FileManager {
     public void readFromFile(File file) throws FileNotFoundException {
         BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
         String auxText;
-        controller.clearAll();
+        model.clearAll();
         try {
             if (VARIABLES_TAG.equals(auxText = br.readLine())) {
                 while((auxText = br.readLine()) != null && !OPERATIONS_TAG.equals(auxText))
-                    view.variables.setText(view.getVariables() + auxText + NEW_LINE);
+                    controller.variables.setText(controller.getVariables() + auxText + NEW_LINE);
                 
                 if (OPERATIONS_TAG.equals(auxText)) {
                     while((auxText = br.readLine()) != null)
-                        controller.addToOperations(auxText);
-                    controller.updateLastOperations();
+                        model.addToOperations(auxText);
+                    model.updateLastOperations();
                     return;
                 }
             }
-            view.variables.setText(ERROR_FILE);
+            controller.variables.setText(ERROR_FILE);
         } catch (IOException e) {
-            view.variables.setText(ERROR_IO);
+            controller.variables.setText(ERROR_IO);
         }
     }
 }
