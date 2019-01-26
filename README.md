@@ -50,12 +50,15 @@ More information about the reserved functions and how to use the software availa
 
 ## Download
 
-[Calcue v1.0.0](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue-1.0.0.jar) </br>
-*JAVA required*
+[Calcue v1.0.0 (.jar)](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue.1.0.0.jar) </br>
 
-[Calcue v1.0.0 - Windows](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue.1.0.0.Windows.zip) </br>
-*Comes with its installer and NO JAVA required*
+### Native Bundles
 
+No java required
+
+[Calcue v1.0.0 - Windows (.exe)](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue.1.0.0-Windows.zip) </br>
+
+[Calcue v1.0.0 - Linux (.deb)](https://github.com/Usbac/Calcue/releases/download/v1.0.0/Calcue.1.0.0-Linux.zip) </br>
 
 ## Contributing
 
