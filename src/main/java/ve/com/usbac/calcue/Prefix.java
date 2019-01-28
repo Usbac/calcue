@@ -24,10 +24,27 @@ public final class Prefix {
      */
     public void processNumberIntoStack(Stack main, String string) {
         String number = EMPTY;
+        
+        if (isNumberSign(string, index)) {
+            number += string.charAt(index++);
+        }
+        
         while (index < string.length() && (Character.isDigit(string.charAt(index)) || string.charAt(index) == '.')) {
             number += string.charAt(index++);
         }
         main.push(number);
+    }
+    
+
+    /**
+     * Returns <code>true</code> if the char in the specified index is the sign of a number
+     * @param string the operation string
+     * @param i the index
+     * @return <code>true</code> if the char in the specified index is the sign of a number
+     */
+    public boolean isNumberSign(String string, int i) {
+        return (string.charAt(i) == '+' || string.charAt(i) == '-') && i > 0 && 
+               (isOperand(string.charAt(i-1)) || string.charAt(i-1) == '(') && isNumber(string.charAt(i+1));
     }
     
     
@@ -183,7 +200,7 @@ public final class Prefix {
         
         for (index = 0; index < string.length();) {
             //Number
-            if (isNumber(string.charAt(index))) {
+            if (isNumber(string.charAt(index)) || isNumberSign(string, index)) {
                 processNumberIntoStack(main, string);
                 
             //Word (Variable/Function)
@@ -427,8 +444,9 @@ public final class Prefix {
      * @return the result of the function
      */
     public String getResult(String function, String variables) {
-        Stack main = convertToPrefix(fixFunction(function));
-        String result = solvePrefix(main, fixVariables(variables)).firstElement().toString();
+        Stack operation = convertToPrefix(fixFunction(function));
+        String result = solvePrefix(operation, fixVariables(variables)).firstElement().toString();
+        
         return getFormatedNumber(Double.parseDouble(result));
     }
     

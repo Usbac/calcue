@@ -5,10 +5,10 @@
   Calcue
   <br>
 </h1>
-<h4 align="center">Calculator with variables, functions and an easy to use UI</h4>
+<h4 align="center">Advanced calculator with variables, functions and an easy to use UI</h4>
 
 <p align="center">
-<img src="https://img.shields.io/badge/stability-stable-brightgreen.svg"> <img src="https://img.shields.io/badge/version-1.0.0-blue.svg">
+<img src="https://img.shields.io/badge/stability-stable-brightgreen.svg"> <img src="https://img.shields.io/badge/version-1.0.1-blue.svg">
 </p>
 
 </br>

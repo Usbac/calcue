@@ -23,14 +23,16 @@ public class Calcue extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource(SCENE));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(MAIN_STYLE);
-        scene.getStylesheets().add(DARK_THEME);
+        scene.getStylesheets().add(getClass().getResource(MAIN_STYLE).toString());
+        scene.getStylesheets().add(getClass().getResource(DARK_THEME).toString());
+        
         stage.getIcons().add(new Image(getClass().getResourceAsStream(ICON)));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle(TITLE);
         stage.setScene(scene);
         stage.setWidth(WIDTH);
         stage.show();
+        
         initializeMouseMovement(root, stage);
     }
     

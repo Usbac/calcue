@@ -25,7 +25,7 @@ public class Controller implements Initializable {
     final String ICON_PATH = "/images/icon.png";
     final String LINK = "https://github.com/Usbac/Calcue";
     final String ABOUT_TITLE = "Calcue Information";
-    final String ABOUT_HEADER = "Calcue v0.9.2";
+    final String ABOUT_HEADER = "Calcue v1.0.1";
     final String ABOUT_TEXT = "Created by USBAC \n"
                             + "Click the Calcue logo for more information \n"
                             + "about the reserved functions and how to use.";
