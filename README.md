@@ -8,7 +8,9 @@
 <h4 align="center">Advanced calculator with variables, functions and an easy to use UI</h4>
 
 <p align="center">
-<img src="https://img.shields.io/badge/stability-stable-brightgreen.svg"> <img src="https://img.shields.io/badge/version-1.0.1-blue.svg">
+<img src="https://img.shields.io/badge/stability-stable-brightgreen.svg"> 
+<img src="https://img.shields.io/badge/version-1.0.1-blue.svg">
+<img src="https://img.shields.io/badge/license-GNU-orange.svg">
 </p>
 
 </br>
@@ -23,16 +25,9 @@
 * Multiple predefined functions
 * Save and load data from files
 * Operations history
-* Platform independent
 * Dark and light theme
-* Easy to use UI
 * Compact design
 * And more...
-
-</br>
-<p align="center">
-<img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/6df2b173776045.5c151efb78cb9.png" width="60%" height="60%"> 
-</p>
 
 
 ## Reserved functions
