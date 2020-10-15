@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="http://usbac.com.ve/images/Calcue%20Logo.png" alt="Calcue Logo" width="150">
+  <img src="http://image.usbac.com.ve/Calcue%20Logo.png" alt="Calcue Logo" width="150">
   <br>
   Calcue
   <br>
@@ -15,7 +15,7 @@
 
 </br>
 <p align="center">
-<img src="http://usbac.com.ve/images/Calcue%20Screenshot.png" width="40%"> 
+<img src="http://image.usbac.com.ve/Calcue%20Screenshot.png" width="40%"> 
 </p>
 
 
